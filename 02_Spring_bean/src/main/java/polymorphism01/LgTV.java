@@ -1,16 +1,27 @@
 package polymorphism01;
 
-class LgTV {
-	public void on() {
+public class LgTV implements TV {
+	public LgTV() {
+		System.out.println(">> LgTV() 실행~");
+	}
+	
+	@Override
+	public void powerOn() {
 		System.out.println("LgTV - 전원ON");
 	}
-	public void off() {
-		System.out.println("LgTV - 전원OFF");
+	
+	@Override
+	public void powerOff() {
+		System.out.println("LgTV - 전원OFF~~");
 	}
-	public void soundUp() {
-		System.out.println("LgTV - 소리크게~~");
+	
+	@Override
+	public void volumeUp() {
+		System.out.println("LgTV - 소리크게");
 	}
-	public void soundDown() {
+	
+	@Override
+	public void volumeDown() {
 		System.out.println("LgTV - 소리작게~~");
 	}
 }

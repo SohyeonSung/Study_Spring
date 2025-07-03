@@ -1,22 +1,27 @@
 package polymorphism01;
 
-class TVUser {
+import org.springframework.context.support.GenericXmlApplicationContext;
+
+public class TVUser {
 
 	public static void main(String[] args) {
-		// 삼성TV 사용
-//		SamsungTV tv = new SamsungTV();
-//		tv.powerOn();
-//		tv.volumeUp();
-//		tv.volumeDown();
-//		tv.powerOff();
+		System.out.println("--- 스프링 컨테이너 구동 전 ----");
+		GenericXmlApplicationContext factory
+			= new GenericXmlApplicationContext("applicationContext.xml");
 		
-		// 엘지TV 사용
-		LgTV tv = new LgTV();
-		tv.on();
-		tv.soundUp();
-		tv.soundDown();
-		tv.off();
-
+		System.out.println("--- 스프링 컨테이너 구동 후 ----");
+		
+		System.out.println("--- TV 요청 사용 ----");
+		TV tv = (TV) factory.getBean("tv");
+		tv.powerOn();
+		tv.volumeUp();
+		tv.volumeDown();
+		tv.powerOff();
+		
+		System.out.println("--- 스프링 컨테이너 종료 (CLOSE) ----");
+		factory.close();
+		
+		
 	}
 
 }

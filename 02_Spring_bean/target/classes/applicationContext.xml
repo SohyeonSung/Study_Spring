@@ -3,5 +3,38 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-
+	<!-- <bean id = "tv" class="polymorphism01.SamsungTV"/> -->
+	<bean id="tv" class="polymorphism01.LgTV" lazy-init="true"/>
+	
+	
+	<!-- bean 태그 속성
+	
+	- id 속성 : 요청(호출)시 사용할 명칭(유일한 명칭)
+	- class 속성(필수) : 대상 클래스(패키지.클래스명)
+	- lazy-init : 생성시기 설정
+				  (기본) 컨테이너 구동 시 객체 생성
+				  (lazy-init="true") 최초 요청 시 생성
+	- scope : 객체 생성 형태를 정의
+			  (기본) 싱글톤  : 하나의 객체 생성 사용
+			  (prototype) 요청할 때마다 새로운 객체 생성
+	- init-method : 객체 생성 후 초기화 작업 처리를 위한 메서드
+	- destory-method : 객체 소멸 시 처리할 작업을 작성/설정을 위한 메서드
+	 -->
+	<bean id="tv2Samsung" class="polymorphism02.SamsungTV"
+		init-method="initMethod" destroy-method="destroyMethod"
+		scope="prototype" />
+		
+	<bean id="tv2Lg" class="polymorphism02.LgTV" 
+		init-method="initMethod" destroy-method="destroyMethod"
+		lazy-init="true" />
+	 
+	
 </beans>
+
+
+
+
+
+
+
+
