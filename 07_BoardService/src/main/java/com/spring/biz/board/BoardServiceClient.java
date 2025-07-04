@@ -17,9 +17,9 @@ public class BoardServiceClient {
 		
 		// INSERT
 		BoardVO vo = new BoardVO();
-		vo.setTitle("제목 Spring");
-		vo.setWriter("홍길동 Spring");
-		vo.setContent("내용 Spring");
+		vo.setTitle("제목 Spring1");
+		vo.setWriter("홍길동 Spring1");
+		vo.setContent("내용 Spring1");
 		
 		boardService.insertBoard(vo);
 		

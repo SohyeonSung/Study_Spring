@@ -17,9 +17,9 @@ public class UserServiceClient {
 	
 		// INSERT
 		UserVO vo = new UserVO();
-		vo.setId("user2");
-		vo.setPassword("user2");
-		vo.setName("김유신");
+		vo.setId("user3");
+		vo.setPassword("user3");
+		vo.setName("을지문덕");
 		vo.setRole("User");
 		
 		userService.insertUser(vo);
