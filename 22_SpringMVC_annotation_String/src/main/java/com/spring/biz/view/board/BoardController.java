@@ -1,0 +1,78 @@
+package com.spring.biz.view.board;
+
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.spring.biz.board.BoardVO;
+import com.spring.biz.board.impl.BoardDAO;
+
+@Controller
+public class BoardController {
+
+	@RequestMapping("/getBoard.do")
+	public String getBoard(BoardVO vo, BoardDAO dao, Model model) {
+		System.out.println(">> 게시글 1개 조회(상세보기)-------------");
+		System.out.println("vo : " + vo);
+		
+		BoardVO board = dao.getBoard(vo);
+		
+		//2-2. 뷰에서 사용토록 데이터 전달
+		//ModelAndView mav = new ModelAndView();
+		//mav.addObject("board", board);
+		//mav.setViewName("getBoard.jsp");
+		
+		model.addAttribute("board", board); // Model 객체 사용 View로 데이터 전달
+		
+		return "getBoard.jsp";
+	}
+	
+	@RequestMapping("/getBoardList.do")
+	public String getBoardList(BoardDAO boardDAO, Model model) {
+		System.out.println(">> 게시글 전체 목록 보여주기 -----------------");
+		//1. 게시글 목록 조회(SELECT)
+		List<BoardVO> boardList = boardDAO.getBoardList();
+		
+		//2. 뷰에서 사용토록 데이터 전달
+		//mav.addObject("boardList", boardList); // Model 에 데이터 저장
+		//mav.setViewName("getBoardList.jsp"); // View 명칭 저장
+		
+		model.addAttribute("boardList", boardList);
+		
+		return "getBoardList.jsp";
+	}
+	
+	@RequestMapping("/insertBoard.do")
+	public String insertBoard(BoardVO vo, BoardDAO boardDAO) {
+		System.out.println(">> 게시글 입력 처리 -------------------");
+
+		boardDAO.insertBoard(vo);
+		
+//		ModelAndView mav = new ModelAndView();
+//		mav.setViewName("redirect:getBoardList.do");
+		
+		return "redirect:getBoardList.do";
+	}
+	
+	@RequestMapping("/updateBoard.do")
+	public String updateBoard(BoardVO vo, BoardDAO boardDAO) {
+		System.out.println(">> 게시글 수정 처리------------------");
+		boardDAO.updateBoard(vo);
+		
+		return "redirect:getBoardList.do";
+	}
+	
+	@RequestMapping("/deleteBoard.do")
+	public String deleteBoard(BoardVO vo, BoardDAO boardDAO) {
+		System.out.println(">> 게시글 삭제 처리---------------");
+
+		boardDAO.deleteBoard(vo);
+		
+		return "redirect:getBoardList.do";
+	}
+
+	
+}
